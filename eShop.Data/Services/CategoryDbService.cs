@@ -1,4 +1,9 @@
-﻿namespace eShop.Data.Services;
+﻿
+using eShop.API.DTO;
+using eShop.Data.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace eShop.Data.Services;
 
 public class CategoryDbService(EShopContext db, IMapper mapper) : DbService(db, mapper)
 {
@@ -8,6 +13,5 @@ public class CategoryDbService(EShopContext db, IMapper mapper) : DbService(db, 
         //IncludeNavigationsFor<Product>();
         return await base.GetAsync<TEntity, TDto>();
     }
-
 
 }
