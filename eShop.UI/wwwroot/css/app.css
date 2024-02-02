@@ -43,18 +43,18 @@ h1:focus {
 /*.bi.bi-cart {
     font-size: 8.5rem !important;
 }*/
-header div img, .dropdown .btn {
-    height: 49px;
+nav a img {
+    height: 37px;
 }
 
 .search-width{
     width: 25%;
 }
 
-#cart-button {
+/*#cart-button {
     width: 49px;
     height: 49px;
-}
+}*/
 
 .cart-count {
     top: 0;
@@ -69,4 +69,21 @@ header div img, .dropdown .btn {
 
 /*.dropdown .btn{
     height:49px;
+}*/
+
+.carousel.slide {
+    width: 75%;
+}
+
+/*.product-card {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.product-card-list:first-child {
+    margin-left: 0rem;
+}
+
+.product-card-list:last-child {
+    margin-right: 0rem;
 }*/

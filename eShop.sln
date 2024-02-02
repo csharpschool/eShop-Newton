@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.API.Extensions", "eSh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.API.DTO", "eShop.API.DTO\eShop.API.DTO.csproj", "{BD5F132A-787B-4451-85C4-F642E0798E3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.UI", "eShop.UI\eShop.UI.csproj", "{D0992F4B-1694-4D38-AD99-D9C33B04F9E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.UI", "eShop.UI\eShop.UI.csproj", "{D0992F4B-1694-4D38-AD99-D9C33B04F9E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
