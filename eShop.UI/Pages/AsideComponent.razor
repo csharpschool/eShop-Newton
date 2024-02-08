@@ -2,13 +2,14 @@
     id="aside-menu" 
     class="d-flex flex-column m-2 ms-0 mt-0 p-2 pt-0 bg-body-secondary vh-100"
     style="min-width:160px; max-width:200px;">
-    @foreach (var group in CaregoryLinkGroups)
+    @foreach (var group in Service!.CaregoryLinkGroups)
     {
         <LinkMainComponent LinkGroup="group" OnAsideCall="OnAsideCallback"/>
     }
 </aside>
 
 @code {
+    [CascadingParameter(Name = "Service")] public UIService? Service { get; set; }
     [Parameter] public EventCallback OnChange { get; set; }
 
     void OnAsideCallback(int id)
@@ -18,7 +19,7 @@
             OnChange.InvokeAsync();
         }
     }
-    List<LinkGroup> CaregoryLinkGroups { get; set; } = new()
+    /*List<LinkGroup> CaregoryLinkGroups { get; set; } = new()
     {
         new LinkGroup() 
         { 
@@ -29,5 +30,5 @@
                 new LinkOption { Id = 3, Name = "Children", IsSelected = false }
             }
         }
-    };
+    };*/
 }
