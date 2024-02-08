@@ -9,9 +9,14 @@
 </aside>
 
 @code {
+    [Parameter] public EventCallback OnChange { get; set; }
+
     void OnAsideCallback(int id)
     {
-        
+        if (OnChange.HasDelegate)
+        {
+            OnChange.InvokeAsync();
+        }
     }
     List<LinkGroup> CaregoryLinkGroups { get; set; } = new()
     {
