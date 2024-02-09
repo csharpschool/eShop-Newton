@@ -21,6 +21,6 @@ public class UIService(CategoryHttpClient categoryHttp, IMapper mapper)
         Categories = await categoryHttp.GetCategoriesAsync();
         CaregoryLinkGroups[0].LinkOptions = mapper.Map<List<LinkOption>>(Categories);
         var linkOption = CaregoryLinkGroups[0].LinkOptions.FirstOrDefault();
-
+        linkOption!.IsSelected = true;
     }
 }
