@@ -19,6 +19,17 @@
             OnChange.InvokeAsync();
         }
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Service is not null)
+        {
+            await Service.GetLinkGroup();
+            await OnChange.InvokeAsync();
+        }
+    }
+
+
     /*List<LinkGroup> CaregoryLinkGroups { get; set; } = new()
     {
         new LinkGroup() 
