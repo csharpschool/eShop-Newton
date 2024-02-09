@@ -1,4 +1,9 @@
+using AutoMapper;
+using eShop.API.DTO;
+using eShop.API.Extensions.Extensions;
 using eShop.Data.Contexts;
+using eShop.Data.Entities;
+using eShop.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +30,8 @@ builder.Services.AddCors(policy =>
     );
 });
 
+RegisterServices();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,29 +43,44 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+RegisterEndpoints();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
 
 app.Run();
 
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+void RegisterEndpoints()
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    app.AddEndpoint<Product, ProductPostDTO, ProductPutDTO, ProductGetDTO>();
+    app.MapGet($"/api/productsbycategory/" + "{categoryId}", async (IDbService db, int categoryId) =>
+    {
+        try
+        {
+            var result = await ((ProductDbService)db).GetProductsByCategoryAsync(categoryId);
+            return Results.Ok(result);
+        }
+        catch
+        {
+        }
+
+        return Results.BadRequest($"Couldn't get the requested products of type {typeof(Product).Name}.");
+    });
+}
+
+void RegisterServices()
+{
+    ConfigureAutoMapper();
+    builder.Services.AddScoped<IDbService, ProductDbService>();
+}
+
+void ConfigureAutoMapper()
+{
+    var config = new MapperConfiguration(cfg =>
+    {
+        cfg.CreateMap<Product, ProductPostDTO>().ReverseMap();
+        cfg.CreateMap<Product, ProductPutDTO>().ReverseMap();
+        cfg.CreateMap<Product, ProductGetDTO>().ReverseMap();
+        cfg.CreateMap<ProductCategory, ProductCategoryDTO>().ReverseMap();
+    });
+    var mapper = config.CreateMapper();
+    builder.Services.AddSingleton(mapper);
 }
