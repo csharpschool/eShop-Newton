@@ -45,6 +45,10 @@ app.UseHttpsRedirection();
 
 RegisterEndpoints();
 
+/************************
+ ** CORS Configuration **
+ ************************/
+app.UseCors("CorsAllAccessPolicy");
 
 app.Run();
 
