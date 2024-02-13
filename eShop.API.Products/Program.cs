@@ -54,8 +54,8 @@ app.Run();
 
 void RegisterEndpoints()
 {
-    app.AddEndpoint<Product, ProductPostDTO, ProductPutDTO, ProductGetDTO>();
-    app.MapGet($"/api/productsbycategory/" + "{categoryId}", async (IDbService db, int categoryId) =>
+    app.AddEndpoint<Product, ProductPostDTO, ProductPutDTO, ProductGetDTO>();//+ "{categoryId}"
+    app.MapGet($"/api/productsbycategory/{{categoryId}}" , async (IDbService db, int categoryId) =>
     {
         try
         {
