@@ -11,12 +11,36 @@
                         <h5 class="card-title">@product.Name</h5>
                         <p class="card-text">@product.Description.Truncate(300)</p>
                     </div>
-                    
                 </div>
             </div>
-            <div class="row card-footer g-0">
-                Card footer
+            <div class="d-flex card-footer bg-white g-0 justify-content-start">
+                @if (product.Sizes!.Count > 0)
+                {
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        @foreach (var size in product.Sizes)
+                        {
+                            <input type="radio" class="btn-check" name="btnradio" id="size-@product.Id-@size.Id" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary btn-radio" for="size-@product.Id-@size.Id">@size.Name.ToUpper()</label>
+                        }
+                    </div>                    
+                }
+                @if (product.Colors!.Count > 0)
+                {
+                    foreach(var color in product.Colors)
+                    {
+                        <div class="btn-group mx-2" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="color-@product.Id-@color.Id" id="color-@product.Id-@color.Id"
+                               autocomplete="off">
+                            <label class="btn btn-sm btn-outline-primary"
+                                   style="background-color:#@color.BGColor; color:#@(color.IsSelected ? color.TextColor : color.BGColor)"
+                               for="color-@product.Id-@color.Id"><i class="bi-check"></i></label>
+                        </div>                      
+                    }
+                }
+
+                <button class="btn btn-sm btn-success" @onclick="AddToCart"><i class="bi-cart"></i></button>
             </div>
+
         </div>
     }
 </section>
@@ -25,4 +49,8 @@
     [CascadingParameter(Name = "Service")] public UIService? Service { get; set; }
     [Parameter] public EventCallback OnChange { get; set; }
 
+    void AddToCart()
+    {
+        
+    }
 }

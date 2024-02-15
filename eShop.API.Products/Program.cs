@@ -83,6 +83,12 @@ void ConfigureAutoMapper()
         cfg.CreateMap<Product, ProductPostDTO>().ReverseMap();
         cfg.CreateMap<Product, ProductPutDTO>().ReverseMap();
         cfg.CreateMap<Product, ProductGetDTO>().ReverseMap();
+        cfg.CreateMap<Size, SizePostDTO>().ReverseMap();
+        cfg.CreateMap<Size, SizePutDTO>().ReverseMap();
+        cfg.CreateMap<Size, SizeGetDTO>().ReverseMap();
+        cfg.CreateMap<Color, ColorPostDTO>().ReverseMap();
+        cfg.CreateMap<Color, ColorPutDTO>().ReverseMap();
+        cfg.CreateMap<Color, ColorGetDTO>().ReverseMap();
         cfg.CreateMap<ProductCategory, ProductCategoryDTO>().ReverseMap();
     });
     var mapper = config.CreateMapper();
