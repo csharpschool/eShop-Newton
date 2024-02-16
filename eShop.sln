@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.UI.New", "eShop.UI.Ne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.UI.Http", "eShop.UI.Http\eShop.UI.Http.csproj", "{0413F4BB-DC4E-4A61-91DB-7BEA0C919672}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.API.Products", "eShop.API.Products\eShop.API.Products.csproj", "{411C3A62-254E-426E-95A8-98336C81C7F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.API.Products", "eShop.API.Products\eShop.API.Products.csproj", "{411C3A62-254E-426E-95A8-98336C81C7F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
