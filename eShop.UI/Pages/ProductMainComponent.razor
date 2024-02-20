@@ -1,4 +1,7 @@
-﻿<section class="d-flex flex-wrap">
+﻿@using eShop.UI.Storage.Services
+@inject IStorageService Storage
+
+<section class="d-flex flex-wrap">
     @foreach(var product in Service!.Products)
     {
         <div class="card mb-3" style="max-width: 540px;">
@@ -42,7 +45,7 @@
                     }
                 }
 
-                <button class="btn btn-sm btn-success" @onclick="AddToCart"><i class="bi-cart"></i></button>
+                <button class="btn btn-sm btn-success" @onclick="() => AddToCart(product)"><i class="bi-cart"></i></button>
             </div>
 
         </div>
@@ -66,7 +69,7 @@
     }
 
     /*void OnColorClick1(int productId, int colorId)
-    {
+        {
         var product = Service!.Products.Single(p => p.Id == productId);
         product.Colors!.ForEach(c => c.IsSelected = false);
         var color = product.Colors.Single(c => c.Id == colorId);
@@ -74,8 +77,17 @@
     }*/
 
 
-    void AddToCart()
+    async Task AddToCart(ProductGetDTO product)
     {
-        
+        //TODO: Spara flera produkter till shopping cart
+        //TODO: Visa produkterna i shopping carten
+        //TODO: Ta bort produkt från shopping cart
+
+        //await Storage.SetAsync("MyKey", product);
+        //var prod = await Storage.GetAsync<ProductGetDTO>("MyKey");
+        //await Storage.RemoveAsync("MyKey");
+
+
+        //var product = Service!.Products.Single(p => p.Id == id);
     }
 }
