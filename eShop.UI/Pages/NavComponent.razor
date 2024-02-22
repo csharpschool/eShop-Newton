@@ -34,10 +34,11 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        UICartService!.CartItems = await UICartService!.ReadStorage<List<ProductGetDTO>>("CartItems");
+        UICartService!.CartItems = 
+            await UICartService!.ReadStorage<List<CartItemDTO>>("CartItems") ?? [];
     }
 
-    async Task OnRemoveCartItem(ProductGetDTO? cartItem)
+    async Task OnRemoveCartItem(CartItemDTO? cartItem)
     {
         UICartService!.CartItems.Remove(cartItem);
         await UICartService!.SaveToStorage("CartItems", UICartService!.CartItems);

@@ -1,5 +1,5 @@
 ﻿@using eShop.UI.Storage.Services
-@* @inject IStorageService Storage *@
+@inject IMapper mapper
 
 <section class="d-flex flex-wrap">
     @foreach(var product in Service!.Products)
@@ -82,8 +82,10 @@
         //TODO: Spara flera produkter till shopping cart
         //TODO: Visa produkterna i shopping carten
         //TODO: Ta bort produkt från shopping cart
-
-        Service!.CartItems.Add(product);
+        var cartItem = mapper.Map<CartItemDTO>(product);
+        cartItem.Color = product.Colors!.FirstOrDefault(c => c.IsSelected);
+        cartItem.Size = product.Sizes!.FirstOrDefault(s => s.IsSelected);
+        Service!.CartItems.Add(cartItem);
         await Service!.SaveToStorage("CartItems", Service!.CartItems);
 
         //await Storage.SetAsync("MyKey", product);

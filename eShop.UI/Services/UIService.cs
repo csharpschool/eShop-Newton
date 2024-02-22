@@ -8,7 +8,7 @@ public class UIService(CategoryHttpClient categoryHttp,
 {
     List<CategoryGetDTO> Categories { get; set; } = [];
     public List<ProductGetDTO> Products { get; private set; } = [];
-    public List<ProductGetDTO> CartItems { get; set; } = [];
+    public List<CartItemDTO> CartItems { get; set; } = [];
     public List<LinkGroup> CaregoryLinkGroups { get; private set; } =
     [
         new LinkGroup { 
