@@ -88,6 +88,9 @@
         Service!.CartItems.Add(cartItem);
         await Service!.SaveToStorage("CartItems", Service!.CartItems);
 
+        if (OnChange.HasDelegate)
+            await OnChange.InvokeAsync();
+
         //await Storage.SetAsync("MyKey", product);
         //await Service!.SaveToStorage("MyKey", product);
 
